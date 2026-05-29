@@ -1,0 +1,15 @@
+ProductID,ProductName,Category,Stock,Price,SupplierID,Warehouse,LastRestocked,ExpiryDate,Weight
+P001,Widget A,Electronics,25,15.99,SUP101,WH-North,2024-10-15,2025-12-31,0.5
+P002,Widget B,Electronics,8,22.50,SUP102,WH-South,2024-11-01,2025-11-30,0.8
+P003,Widget C,Tools,15,10.00,SUP103,WH-East,2024-09-20,2026-01-15,1.2
+P004,Widget D,Furniture,5,30.00,SUP101,WH-North,2024-08-10,2025-10-20,5.0
+P005,Widget E,Electronics,12,18.75,SUP104,WH-West,2024-10-25,2025-12-15,0.3
+P006,Gadget X,Electronics,30,45.99,SUP102,WH-South,2024-11-10,2026-02-28,0.6
+P007,Tool Set,Tools,7,89.99,SUP103,WH-East,2024-09-15,2027-03-31,3.5
+P008,Chair Deluxe,Furniture,4,125.00,SUP105,WH-North,2024-07-22,2025-09-30,12.0
+P009,Lamp Pro,Electronics,20,35.50,SUP101,WH-West,2024-10-30,2025-11-25,1.5
+P010,Desk Mat,Office,9,12.99,SUP106,WH-South,2024-11-05,2026-06-30,0.4
+P002,Widget B,Electronics,8,22.50,SUP102,WH-South,2024-11-01,2025-11-30,0.8
+P011,Monitor Stand,Office,18,55.00,SUP104,WH-East,2024-10-18,2026-12-31,2.8
+P012,Keyboard Wireless,Electronics,6,78.99,SUP102,WH-North,2024-09-28,2025-10-31,0.9
+P013,Storage Box,Office,22,15.50,SUP107,WH-West,2024-11-12,2027-01-15,1.0

@@ -1,0 +1,31 @@
+Conversational Retail Inventory Replenishment Assistant 
+
+PROBLEM STATEMENT 
+Retail managers and supply chain teams often struggle with timely and accurate inventory replenishment decisions 
+due to fragmented data sources and lack of intuitive decision support. Existing inventory management systems provide 
+raw stock levels and sales data but lack interactive, context-aware tools that guide reorder recommendations. 
+Overstocking leads to increased holding costs and waste, while stockouts cause lost sales and dissatisfied customers. 
+The decision-making process is manual, time-consuming, and error-prone, especially in fast-moving consumer goods 
+environments with thousands of SKUs. Moreover, collaboration between store managers, suppliers, and procurement 
+teams is hindered by inconsistent information sharing. There is a pressing need for an AI assistant that can understand 
+inventory status, forecast immediate replenishment needs, and interact conversationally to help staff quickly resolve 
+inventory gaps. 
+
+Data Considerations: 
+SKU-level inventory stock counts and sales transaction data in structured formats (JSON, CSV) from internal retail 
+systems or simulated APIs. Product metadata including supplier details and reorder lead times. External demand 
+signals from promotional calendars or market trends if available. Data volume should represent typical store-level 
+inventory units (hundreds to thousands of SKUs). Data cleaning includes normalization of product codes and 
+timestamp alignment. Privacy concerns focus on masking store identifiers and sensitive supplier contracts. Synthetic 
+datasets with varied demand and supply scenarios can be generated for testing. 
+Consider using synthetic or anonymized data where appropriate. Ensure data quality and relevance to the problem 
+context. 
+
+SOLUTION EXPECTATIONS 
+An interactive web-based chatbot interface where retail staff input queries about inventory levels and receive AI
+generated reorder recommendations with rationale. Features include conversational querying, real-time inventory 
+status display, reorder alerts, and supplier contact integration. The AI agent uses natural language understanding and 
+retrieval augmented generation to process inventory data and generate clear, actionable responses. Integration with 
+inventory management and sales APIs or mock data feeds ensures realistic testing. Success will be measured by 
+recommendation accuracy, response speed, and positive user feedback during demo. 
+Feel free to explore creative solutions that align with the problem context and objectives. 

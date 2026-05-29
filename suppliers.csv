@@ -1,0 +1,8 @@
+SupplierID,SupplierName,Email,Phone,Address,Website,LeadTime
+SUP101,Acme Corp,contact@acme.com,+1-555-1001,123 Main St - New York NY,acme.com,2
+SUP102,Widget Wholesale,sales@widgetco.com,+1-555-1002,456 Oak Ave - Los Angeles CA,widgetco.com,3
+SUP103,Tools & Hardware Ltd,support@toolshardware.com,+1-555-1003,789 Pine Rd - Chicago IL,toolshardware.com,4
+SUP104,Office Supplies Pro,orders@officesupplies.com,+1-555-1004,321 Elm St - Houston TX,officesupplies.com,2
+SUP105,Furniture Solutions Inc,sales@furnitureso.com,+1-555-1005,654 Maple Dr - Phoenix AZ,furnitureso.com,5
+SUP106,Business Equipment Co,support@buseq.com,+1-555-1006,987 Cedar Ln - Philadelphia PA,buseq.com,3
+SUP107,Storage Systems LLC,info@storagesys.com,+1-555-1007,159 Birch Blvd - San Antonio TX,storagesys.com,2

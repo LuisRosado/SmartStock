@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="SmartStock - Intelligent inventory management system" />
+    <meta name="theme-color" content="#0d0f12" />
+    <title>SmartStock</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+
+    <!-- ══════════════════════════════════════
+         HEADER GLOBAL CON TABS
+    ═══════════════════════════════════════ -->
+    <header class="app-header">
+      <a href="/" class="app-logo">
+        <div class="app-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="app-logo-text">Smart<strong>Stock</strong></span>
+      </a>
+      
+      <nav class="tab-nav" role="tablist" aria-label="Main sections">
+        <button
+          class="tab-btn active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panel-chat"
+          id="tab-chat"
+          type="button"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Chat</span>
+        </button>
+        <button
+          class="tab-btn"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-dashboard"
+          id="tab-dashboard"
+          type="button"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          <span>Dashboard</span>
+        </button>
+      </nav>
+      
+      <div class="header-right">
+        <div id="status" class="status" data-status="online">
+          <span class="status-dot"></span>
+          <span class="status-text">Online</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════════════════
+         TAB: CHAT
+    ═══════════════════════════════════════ -->
+    <main id="panel-chat" class="tab-panel active" role="tabpanel" aria-labelledby="tab-chat">
+      <div class="shell">
+        <section class="chat-panel" aria-label="SmartStock chatbot">
+          
+          <div class="chat-header">
+            <div class="chat-avatar">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                <path d="M2 17L12 22L22 17"/>
+                <path d="M2 12L12 17L22 12"/>
+              </svg>
+            </div>
+            <div class="chat-info">
+              <h1>SmartStock Assistant</h1>
+              <p>Intelligent inventory management</p>
+            </div>
+          </div>
+
+          <div id="messages" class="messages" aria-live="polite">
+            <article class="message bot animate-in">
+              <div class="message-avatar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                  <path d="M2 17L12 22L22 17"/>
+                  <path d="M2 12L12 17L22 12"/>
+                </svg>
+              </div>
+              <div class="message-content">
+                <span>Hi — I'm your assistant. Ask me which products need replenishment or which are low in stock.</span>
+              </div>
+            </article>
+          </div>
+
+          <div id="supplier-contact" class="supplier-contact" style="display: none;"></div>
+
+          <div id="suggestions" class="suggestions">
+            <button type="button" class="suggestion-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              </svg>
+              <span>What should I restock?</span>
+            </button>
+            <button type="button" class="suggestion-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+              <span>Which items are low in stock?</span>
+            </button>
+            <button type="button" class="suggestion-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
+              </svg>
+              <span>Simulate more demand</span>
+            </button>
+          </div>
+
+          <form id="chat-form" class="composer">
+            <div class="composer-input-wrap">
+              <input
+                id="message-input"
+                name="message"
+                type="text"
+                autocomplete="off"
+                placeholder="Type your question..."
+                aria-label="Message"
+                required
+              />
+            </div>
+            <button type="submit" class="composer-btn" aria-label="Send message">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+              <span>Send</span>
+            </button>
+          </form>
+
+        </section>
+      </div>
+    </main>
+
+    <!-- ══════════════════════════════════════
+         TAB: DASHBOARD
+    ═══════════════════════════════════════ -->
+    <main id="panel-dashboard" class="tab-panel" role="tabpanel" aria-labelledby="tab-dashboard" hidden>
+
+      <div class="controls-bar" role="toolbar" aria-label="Analysis controls">
+        <div class="controls-left">
+          <label class="controls-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            Window
+          </label>
+          <div class="btn-group" role="group" aria-label="Días de análisis">
+            <button data-days="7" type="button">7d</button>
+            <button data-days="30" type="button" class="active">30d</button>
+            <button data-days="90" type="button">90d</button>
+          </div>
+        </div>
+        
+        <div class="controls-center">
+          <div class="custom-days-wrap">
+            <input id="custom-days" type="number" min="1" max="365" placeholder="Days..." aria-label="Custom days" />
+            <button id="btn-custom-days" class="btn-secondary" type="button">Apply</button>
+          </div>
+        </div>
+        
+        <div class="controls-right">
+          <button id="btn-actualizar" class="btn-primary" type="button">
+            <svg class="refresh-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 4 23 10 17 10"/>
+              <polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            <span>Refresh</span>
+          </button>
+          <span class="last-update" id="last-update">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span>—</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="dash-content">
+
+        <!-- KPIs -->
+        <section class="kpi-row" aria-label="Key performance indicators">
+          <article class="kpi-card danger">
+            <div class="kpi-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <div class="kpi-content">
+              <span class="kpi-label">Critical SKUs</span>
+              <span class="kpi-value" id="kpi-critical">—</span>
+              <span class="kpi-sub">Stock &lt; threshold (10 u.)</span>
+            </div>
+          </article>
+          
+          <article class="kpi-card">
+            <div class="kpi-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <div class="kpi-content">
+              <span class="kpi-label">Units sold</span>
+              <span class="kpi-value" id="kpi-units">—</span>
+              <span class="kpi-sub" id="kpi-window">—</span>
+            </div>
+          </article>
+          
+          <article class="kpi-card success">
+            <div class="kpi-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <div class="kpi-content">
+              <span class="kpi-label">Revenue generated</span>
+              <span class="kpi-value" id="kpi-revenue">—</span>
+              <span class="kpi-sub">In the selected window</span>
+            </div>
+          </article>
+        </section>
+
+        <!-- Gráfico + Reorden -->
+        <div class="grid-2">
+          <section class="card" aria-label="Demand chart">
+            <header class="card-header">
+              <div class="card-title-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+                <h2 class="card-title">Demand by SKU — Top 10</h2>
+              </div>
+            </header>
+            <div class="card-body">
+              <div class="chart-wrap">
+                <canvas id="demand-chart"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" aria-label="Reorder panel">
+            <header class="card-header">
+              <div class="card-title-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                <h2 class="card-title">Urgent reorder</h2>
+              </div>
+              <span class="card-badge" id="reorden-badge">0</span>
+            </header>
+            <div class="card-body">
+              <div class="reorden-list" id="reorden-list"></div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Inventory table -->
+        <section class="card" aria-label="Inventory table">
+          <header class="card-header">
+            <div class="card-title-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+              <h2 class="card-title">Full inventory</h2>
+            </div>
+          </header>
+          <div class="table-wrap" id="inventory-table-wrap">
+            <table id="inventory-table">
+              <thead>
+                <tr>
+                  <th>SKU</th>
+                  <th>Name</th>
+                  <th>Stock</th>
+                  <th>Demand/day</th>
+                  <th>Lead time</th>
+                  <th>Risk</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="6" class="loading-cell"><span class="spinner"></span> Loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Supplier modal -->
+    <div id="modal-overlay" class="modal-overlay" style="display:none" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal">
+        <header class="modal-head">
+          <h2 id="modal-title">Supplier</h2>
+          <button class="btn-close" id="modal-close" aria-label="Close modal">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </header>
+        <div class="modal-body" id="modal-content"></div>
+      </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+    <script src="/static/dashboard.js"></script>
+
+    <script>
+      (function () {
+        const tabs   = document.querySelectorAll('.tab-btn');
+        const panels = document.querySelectorAll('.tab-panel');
+
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            tabs.forEach(t => { 
+              t.classList.remove('active'); 
+              t.setAttribute('aria-selected', 'false'); 
+            });
+            panels.forEach(p => { 
+              p.classList.remove('active'); 
+              p.hidden = true; 
+            });
+
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
+            const panel = document.getElementById(tab.getAttribute('aria-controls'));
+            panel.classList.add('active');
+            panel.hidden = false;
+
+            if (tab.id === 'tab-dashboard' && !tab.dataset.loaded) {
+              tab.dataset.loaded = '1';
+              if (typeof loadDashboard === 'function') loadDashboard(30);
+            }
+          });
+        });
+
+        // Keyboard navigation for tabs
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('keydown', (e) => {
+            let newIndex;
+            if (e.key === 'ArrowLeft') {
+              newIndex = index === 0 ? tabs.length - 1 : index - 1;
+            } else if (e.key === 'ArrowRight') {
+              newIndex = index === tabs.length - 1 ? 0 : index + 1;
+            }
+            if (newIndex !== undefined) {
+              tabs[newIndex].focus();
+              tabs[newIndex].click();
+            }
+          });
+        });
+      })();
+    </script>
+
+  </body>
+</html>
