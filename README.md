@@ -1,5 +1,7 @@
 # SmartStock
 
+https://github.com/user-attachments/assets/531102da-749e-4778-8d6a-21c022dbd7d1
+
 SmartStock is a minimal application for managing and querying inventory through a chat interface powered by a language model, with demand analysis based on sales transactions and a visual dashboard.
 
 Quick summary:
