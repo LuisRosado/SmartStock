@@ -57,7 +57,7 @@ python -m venv .venv
 3. Environment variables: copy `.env.example` to `.env` and set the following keys if using Hugging Face:
 
 ```text
-HF_TOKEN=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
+HF_TOKEN=hf_xxxxxxxxxxxxxxxxxxxxxxx
 HF_MODEL=openai/gpt-oss-120b:fireworks-ai
 LLM_TIMEOUT_SECONDS=60
 LLM_MAX_TOKENS=1200
